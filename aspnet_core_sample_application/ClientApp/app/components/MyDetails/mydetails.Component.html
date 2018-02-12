@@ -1,0 +1,41 @@
+﻿<h1>
+    List of People
+</h1>
+
+<p *ngIf="!myDetails"><em>Loading...</em></p>
+
+<kendo-grid id="kGrid" [data]="myDetails"
+
+            [height]="533"
+            [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+            [pageable]="true" [sortable]="true"
+            (dataStateChange)="onStateChange($event)"
+            (edit)="editHandler($event)" (remove)="removeHandler($event)"
+            (add)="addHandler($event)">
+
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoGridAddCommand>Add new</button>
+    </ng-template>
+
+    <kendo-grid-column field="id" title="ID"></kendo-grid-column>
+    <kendo-grid-column field="firstName" title="First Name"></kendo-grid-column>
+    <kendo-grid-column field="lastName" title="Last Name"></kendo-grid-column>
+    <kendo-grid-column field="adharNumber" title="Adhaar Number"></kendo-grid-column>
+    <kendo-grid-column field="email" title="Email"></kendo-grid-column>
+    <kendo-grid-column field="phoneNumber" title="Phone Number"></kendo-grid-column>
+
+    <kendo-grid-command-column title="command" width="220">
+        <ng-template kendoGridCellTemplate>
+            <button kendoGridEditCommand class="k-primary">Edit</button>
+            <button kendoGridRemoveCommand>Delete</button>
+        </ng-template>
+    </kendo-grid-command-column>
+
+</kendo-grid>
+
+
+<kendo-grid-edit-form [model]="detail" [isNew]="isNew"
+                      (save)="saveHandler($event)"
+                      (cancel)="cancelHandler()">
+</kendo-grid-edit-form>
+

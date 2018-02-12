@@ -1,0 +1,39 @@
+﻿<kendo-dialog *ngIf="active" (close)="closeForm()">
+	<kendo-dialog-titlebar>
+		{{ isNew ? 'Add new detail' : 'Edit Detail' }}
+	</kendo-dialog-titlebar>
+	<form novalidate [formGroup]="editForm">
+		<div class="form-group" style=" display:none;">
+			<label for="id" class="control-label">ID</label>
+			<input type="text" class="k-textbox" formControlName="id" readonly="readonly" />
+		</div>
+		<div class="form-group">
+			<label for="firstName" class="control-label">First Name</label>
+			<input type="text" class="k-textbox" formControlName="firstName" />
+			<div class="k-tooltip k-tooltip-validation"
+				 [hidden]="editForm.controls.firstName.valid || editForm.controls.firstName.pristine">
+				firstName is required
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastName" class="control-label">Last Name</label>
+			<input type="text" class="k-textbox" formControlName="lastName" />
+		</div>
+		<div class="form-group">
+			<label for="adharNumber" class="control-label">Adhaar Number</label>
+			<input type="text" class="k-textbox" formControlName="adharNumber" />
+		</div>
+		<div class="form-group">
+			<label for="email" class="control-label">Email</label>
+			<input type="text" class="k-textbox" formControlName="email" />
+		</div>
+		<div class="form-group">
+			<label for="phoneNumber" class="control-label">Phone Number</label>
+			<input type="text" class="k-textbox" formControlName="phoneNumber" />
+		</div>
+	</form>
+	<kendo-dialog-actions>
+		<button class="k-button" (click)="onCancel($event)">Cancel</button>
+		<button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">Save</button>
+	</kendo-dialog-actions>
+</kendo-dialog>
